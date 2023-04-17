@@ -4,15 +4,17 @@ import datetime
 
 def log_work_hours():
     """
-    Logs the working hours per day in a local text file named "work-time.csv".
+    Logs the working hours per day in a local text file named "MM-DD-worktime.csv" where MM
+    is the month and DD is the date of the Monday of that week.
     The user should run the script once in the morning when they arrive at work
     and once before leaving in the afternoon. The script calculates the time
     passed between these two runs and subtracts 1 hour for lunch time.
     """
-    file_name = "work-time.csv"
+    today = datetime.date.today()
+    monday = today - datetime.timedelta(days=today.weekday())
+    file_name = "{:02d}-{:02d}-worktime.csv".format(monday.month, monday.day)
 
     # Get current date and time
-    today = datetime.date.today()
     current_time = datetime.datetime.now().strftime('%H:%M')
     day_of_week = today.strftime('%A')
     date_str = today.strftime('%Y-%m-%d')
