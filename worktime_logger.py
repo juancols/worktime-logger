@@ -12,7 +12,7 @@ def log_work_hours():
     """
     today = datetime.date.today()
     monday = today - datetime.timedelta(days=today.weekday())
-    file_name = "{:02d}-{:02d}-worktime.csv".format(monday.month, monday.day)
+    file_name = "logs\{:02d}-{:02d}-worktime.csv".format(monday.month, monday.day)
 
     # Get current date and time
     current_time = datetime.datetime.now().strftime('%H:%M')

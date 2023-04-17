@@ -1,0 +1,2 @@
+# Ignore local Log files
+logs/*.csv
