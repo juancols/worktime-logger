@@ -2,6 +2,8 @@ import os
 import csv
 import datetime
 
+LUNCH_BREAK_IN_HOURS = 0.75 # 45 min lunch break
+
 def log_work_hours():
     """
     Logs the working hours per day in a local text file named "MM-DD-worktime.csv" where MM
@@ -48,7 +50,7 @@ def log_work_hours():
         start_time = datetime.datetime.strptime(lines[1][row_dict[day_of_week]][6:], '%H:%M')
         end_time = datetime.datetime.strptime(lines[2][row_dict[day_of_week]][4:], '%H:%M')
 
-        hours_worked = (end_time - start_time).seconds / 3600.0 - 1.0  # Subtract 1 hour for lunch
+        hours_worked = (end_time - start_time).seconds / 3600.0 - LUNCH_BREAK_IN_HOURS  # Subtract 45 min for lunch
         lines[3][row_dict[day_of_week]] = "{:.2f} h".format(hours_worked)
 
     with open(file_name, "w", newline="") as csvfile:
